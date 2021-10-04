@@ -1,12 +1,15 @@
 <%- include('../partials/header.ejs') %>
 <div class="container mt-3">
   <% for (let cluck of clucks) { %>
-  <div class="card mt-3">
+  <div class="card mt-3 flex-row">
+    <div class="card-avatar">
+      <img class="rounded" src=" /images/avatar.png" width="50" height="50" alt="">
+    </div>
     <div class="card-body">
       <span><%= cluck.username %></span>
       <p class="card-text"><%= cluck.content %></p>
       <% if (cluck.image_url) { %>
-      <img class="card-image" src="<%= cluck.image_url %>" alt="">
+      <img class="card-image img-fluid mx-auto d-block" width="500" src="<%= cluck.image_url %>" alt="">
       <% } %>
     </div>
   </div>

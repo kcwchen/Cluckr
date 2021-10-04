@@ -25,7 +25,6 @@ router.post('/', (req, res) => {
       image_url: req.body.image_url,
       content: req.body.content,
     })
-    .returning('*')
     .then(() => {
       res.redirect('/clucks');
     });
