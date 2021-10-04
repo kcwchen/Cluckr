@@ -14,6 +14,10 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.get('/sign_in', (req, res) => {
+  res.render('sign_in');
+});
+
 const PORT = 5000;
 const DOMAIN = 'localhost';
 
