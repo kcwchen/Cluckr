@@ -46,20 +46,23 @@ router.get('/', (req, res) => {
 
 // Make a new cluck
 router.get('/new', (req, res) => {
-  res.render('clucks/new');
+  res.render('clucks/new', { signed_in: true });
 });
 
 router.post('/', (req, res) => {
-  console.log(req.body);
-  knex('clucks')
-    .insert({
-      username: res.locals.username,
-      image_url: req.body.image_url,
-      content: req.body.content,
-    })
-    .then(() => {
-      res.redirect('/clucks');
-    });
+  if (res.locals.username === '') {
+    res.render('clucks/new', { signed_in: false });
+  } else {
+    knex('clucks')
+      .insert({
+        username: res.locals.username,
+        image_url: req.body.image_url,
+        content: req.body.content,
+      })
+      .then(() => {
+        res.redirect('/clucks');
+      });
+  }
 });
 
 module.exports = router;

@@ -2,6 +2,11 @@
 <div class="container mt-3">
   <div class="card">
     <div class="card-body">
+      <% if (!signed_in) { %>
+      <div class="alert alert-danger" role="alert">
+        You are not signed in. Please <a href="/sign_in" class="alert-link">sign in</a> to make a new cluck.
+      </div>
+      <% } %>
       <form action="/clucks" method="POST">
         <div class="form-group">
           <label for="content" class="form-label">Content</label>
@@ -13,7 +18,7 @@
           <input type="url" name="image_url" id="image_url" class="form-control">
         </div>
         <div class="d-flex flex-row-reverse">
-          <input class="btn" type="submit" value="Cluck!">
+          <input class="btn btn-outline-secondary" type="submit" value="Cluck!">
         </div>
       </form>
     </div>
