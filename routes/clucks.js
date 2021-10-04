@@ -6,7 +6,7 @@ const router = express.Router();
 // Get all clucks
 router.get('/', (req, res) => {
   knex('clucks')
-    .orderBy('created_at')
+    .orderBy('created_at', 'desc')
     .then((data) => {
       const current_time = Date.now();
       let time_passed;
