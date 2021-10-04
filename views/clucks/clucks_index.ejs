@@ -1,0 +1,15 @@
+<%- include('../partials/header.ejs') %>
+<div class="container">
+  <% for (let cluck of clucks) { %>
+  <div class="card mt-3">
+    <div class="card-body">
+      <span><%= cluck.username %></span>
+      <p class="card-text"><%= cluck.content %></p>
+      <% if (cluck.image_url) { %>
+      <img class="card-image" src="<%= cluck.image_url %>" alt="">
+      <% } %>
+    </div>
+  </div>
+  <% } %>
+</div>
+<%- include('../partials/footer.ejs') %>
