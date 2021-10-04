@@ -8,7 +8,19 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+// Custom middleware for cookies
+app.use((req, res, next) => {
+  const username = req.cookies.username;
+  res.locals.username = '';
+  if (username) {
+    res.locals.username = username;
+    console.log(`Signed in as ${username}`);
+  }
+  next();
+});
 
 app.get('/', (req, res) => {
   res.render('index');
@@ -16,6 +28,18 @@ app.get('/', (req, res) => {
 
 app.get('/sign_in', (req, res) => {
   res.render('sign_in');
+});
+
+app.post('/sign_in', (req, res) => {
+  const COOKIE_MAX_AGE = 1000 * 60 * 60 * 24;
+  const username = req.body.username;
+  res.cookie('username', username, { maxAge: COOKIE_MAX_AGE });
+  res.redirect('/');
+});
+
+app.post('/sign_out', (req, res) => {
+  res.clearCookie('username');
+  res.redirect('/');
 });
 
 const PORT = 5000;
