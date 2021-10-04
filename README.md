@@ -1,3 +1,3 @@
 # Cluckr
 
-## A simple twitter clone made using Express
+A simple twitter clone made using Express
