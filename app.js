@@ -18,7 +18,6 @@ app.use((req, res, next) => {
   res.locals.username = '';
   if (username) {
     res.locals.username = username;
-    console.log(`Signed in as ${username}`);
   }
   next();
 });

@@ -6,7 +6,10 @@
       <img class="rounded" src=" /images/avatar.png" width="50" height="50" alt="">
     </div>
     <div class="card-body">
-      <span><%= cluck.username %></span>
+      <span class="font-weight-bold"><%= cluck.username %></span>
+      <span>
+        &#183;</span>
+      <span><%= cluck.time_passed %></span>
       <p class="card-text"><%= cluck.content %></p>
       <% if (cluck.image_url) { %>
       <img class="card-image img-fluid mx-auto d-block" width="500" src="<%= cluck.image_url %>" alt="">
