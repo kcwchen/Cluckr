@@ -12,4 +12,9 @@ router.get('/', (req, res) => {
     });
 });
 
+// Make a new cluck
+router.get('/new', (req, res) => {
+  res.render('clucks/new');
+});
+
 module.exports = router;
