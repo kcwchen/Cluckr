@@ -17,4 +17,18 @@ router.get('/new', (req, res) => {
   res.render('clucks/new');
 });
 
+router.post('/', (req, res) => {
+  console.log(req.body);
+  knex('clucks')
+    .insert({
+      username: res.locals.username,
+      image_url: req.body.image_url,
+      content: req.body.content,
+    })
+    .returning('*')
+    .then(() => {
+      res.redirect('/clucks');
+    });
+});
+
 module.exports = router;
