@@ -67,9 +67,7 @@ router.post('/', (req, res) => {
 
     knex('tags')
       .then((data) => {
-        console.log(data);
         data.forEach((item) => {
-          console.log(item);
           tags_in_db.push({ tag: item.tag, counter: item.counter });
           existing_tags.push(item.tag);
         });
