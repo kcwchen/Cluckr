@@ -23,26 +23,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.get('/', (req, res) => {
-//   res.redirect('/clucks');
-// });
-
-// app.get('/sign_in', (req, res) => {
-//   res.render('sign_in');
-// });
-
-// app.post('/sign_in', (req, res) => {
-//   const COOKIE_MAX_AGE = 1000 * 60 * 60 * 24;
-//   const username = req.body.username;
-//   res.cookie('username', username, { maxAge: COOKIE_MAX_AGE });
-//   res.redirect('/');
-// });
-
-// app.post('/sign_out', (req, res) => {
-//   res.clearCookie('username');
-//   res.redirect('/');
-// });
-
 app.use('', signInRouter);
 app.use('/clucks', clucksRouter);
 
