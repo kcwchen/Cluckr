@@ -73,7 +73,7 @@ router.post('/', (req, res) => {
         });
       })
       .then(() => {
-        if (tags_from_cluck !== null) {
+        if (!!tags_from_cluck) {
           knex('clucks')
             .insert({
               username: res.locals.username,
