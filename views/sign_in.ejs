@@ -1,0 +1,13 @@
+<%- include('./partials/header.ejs') %>
+<div class="container mt-3">
+  <form action="/sign_in" method="post">
+    <div class="form-group">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" name="username" id="username" class="form-control">
+    </div>
+    <div class="d-flex flex-row-reverse">
+      <input type="submit" value="Sign In" class="btn btn-outline-secondary">
+    </div>
+  </form>
+</div>
+<%- include('./partials/footer.ejs') %>
