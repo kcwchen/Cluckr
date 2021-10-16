@@ -73,30 +73,43 @@ router.post('/', (req, res) => {
         });
       })
       .then(() => {
-        knex('clucks')
-          .insert({
-            username: res.locals.username,
-            image_url: req.body.image_url,
-            content: req.body.content,
-          })
-          .then(() => {
-            Promise.all(
-              tags_from_cluck.map((tag) => {
-                if (existing_tags.includes(tag)) {
-                  return knex('tags')
-                    .where('tag', tag)
-                    .update({
-                      counter:
-                        tags_in_db.find((item) => item.tag === tag).counter + 1,
-                    });
-                } else {
-                  return knex('tags').insert({ tag: tag, counter: 1 });
-                }
-              })
-            ).then(() => {
-              res.redirect('/clucks');
+        if (tags_from_cluck !== null) {
+          knex('clucks')
+            .insert({
+              username: res.locals.username,
+              image_url: req.body.image_url,
+              content: req.body.content,
+            })
+            .then(() => {
+              Promise.all(
+                tags_from_cluck.map((tag) => {
+                  if (existing_tags.includes(tag)) {
+                    return knex('tags')
+                      .where('tag', tag)
+                      .update({
+                        counter:
+                          tags_in_db.find((item) => item.tag === tag).counter +
+                          1,
+                      });
+                  } else {
+                    return knex('tags').insert({ tag: tag, counter: 1 });
+                  }
+                })
+              ).then(() => {
+                res.redirect('/clucks');
+              });
             });
-          });
+        } else {
+          knex('clucks')
+            .insert({
+              username: res.locals.username,
+              image_url: req.body.image_url,
+              content: req.body.content,
+            })
+            .then(() => {
+              res.redirect('./clucks');
+            });
+        }
       });
   }
 });
